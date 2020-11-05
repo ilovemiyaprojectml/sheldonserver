@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" monitorInterval="30">
+	
+	<Properties>
+		<Property name="LOG_PATTERN">
+			 <!-- %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName}[%tid] - [%15.15t] %-40.40c{1.} : %m%n%ex -->
+			 %d %-5p ${hostName} [%t][%tid] - [%C{1}.%M():%L]: %m%n 
+		</Property>
+	</Properties>
+	
+	<Appenders>
+		<Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="${LOG_PATTERN}" />
+		</Console>
+		
+		<RollingFile name="FileAppender"
+			fileName="logs/WahoServer.log"
+			filePattern="logs/WahoServer-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout>
+				<Pattern>${LOG_PATTERN}</Pattern>
+			</PatternLayout>
+			<Policies>
+			    <OnStartupTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="50mb" />
+				<TimeBasedTriggeringPolicy interval="1" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+		
+	</Appenders>
+
+	<Loggers>
+		<Logger name="com.fisglobal.waho" level="debug"
+			additivity="false">
+			<AppenderRef ref="FileAppender"/>
+		</Logger>
+		
+		<Logger name="org.hibernate.SQL" level="debug"
+			additivity="false">
+			<AppenderRef ref="FileAppender"/>
+			<AppenderRef ref="ConsoleAppender"/>
+		</Logger>
+		
+		<logger name="com.zaxxer.hikari" level="debug" additivity="false">
+	        <AppenderRef ref="FileAppender"/>
+			<AppenderRef ref="ConsoleAppender"/>
+	    </logger>
+
+		<Root level="warn">
+			<AppenderRef ref="ConsoleAppender" />
+		</Root>
+	</Loggers>
+	
+</Configuration>
