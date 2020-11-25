@@ -23,7 +23,7 @@ public class Email {
 		prop.put("mail.smtp.host", "smtp.gmail.com");
         prop.put("mail.smtp.port", "587");
         prop.put("mail.smtp.auth", "true");
-        //prop.put("mail.smtp.ehlo", "false");
+        //prop.put("mail.smtp.ehlo", "false"); 
         //prop.put("mail.smtp.ssl.enable", "false");
         prop.put("mail.smtp.starttls.enable", "true"); //TLS
         
@@ -40,7 +40,6 @@ public class Email {
             message.setFrom(new InternetAddress("ilovemiyaprojectml@gmail.com"));
             message.setRecipients(
                     Message.RecipientType.TO,
-                    //InternetAddress.parse("Emmanuel.Corpuz@fisglobal.com, AllProfits_team@fisglobal.com, Amelia.Grefalda@fisglobal.com, Ruberson.Tria@fisglobal.com")
                     InternetAddress.parse(recipient)
             );
             message.setSubject(subject);
@@ -67,12 +66,10 @@ public class Email {
 
 	//THIS IS THE OFFICIAL CODE
 	/*public static void email(String subject, String body, String recipientp) {
-		final String username = "AllProfits_SVNBuildAlert@fisglobal.com";
         final String password = "";
         final String recipient = recipientp;
 
         Properties prop = new Properties();
-		prop.put("mail.smtp.host", "smarthost.fisglobal.com");
         prop.put("mail.smtp.port", "25");
         prop.put("mail.smtp.auth", "false");
         prop.put("mail.smtp.ehlo", "false");
@@ -89,10 +86,8 @@ public class Email {
         try {
 
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("AllProfits_SVNBuildAlert@fisglobal.com"));
             message.setRecipients(
                     Message.RecipientType.TO,
-                    //InternetAddress.parse("Emmanuel.Corpuz@fisglobal.com, AllProfits_team@fisglobal.com, Amelia.Grefalda@fisglobal.com, Ruberson.Tria@fisglobal.com")
                     InternetAddress.parse(recipient)
             );
             message.setSubject(subject);
